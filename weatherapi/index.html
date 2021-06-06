@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <title>Weather API</title>
+</head>
+<body>
+    <h1>{%skyview%}</h1>
+    <h4>{%city%} | {%country%}</h4>
+    <p id="currdate"></p>
+    <h2>{%tempval%}°c</h2>
+    <p>Max {%tempmax%}°c | Min {%tempmin%}°c</p>
+    <script>
+        function getCurrentTime(){
+            var now = new Date();
+            var hours = now.getHours();
+            var mins = now.getMinutes();
+            var period = 'AM';
+            
+            if(hours > 11){
+                period = "PM";
+                if(hours > 12){
+                    hours -= 12;
+                }
+            }
+        
+            if(mins < 10){
+                mins = "0" + mins;
+            }
+            return hours + ":" + mins + " " + period;
+        }
+        // document.getElementById("currtime").innerHTML = getCurrentTime();
+
+        function getCurrentDate(){
+            var months = ["Jan","Fab","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+            var weeks = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+            var now = new Date();
+            var date = now.getDate();
+            var month = months[now.getMonth()];
+            var year = now.getFullYear();
+            var week = weeks[now.getDay()+1];
+
+            if(date < 10){
+                date = "0" + date;
+            }
+
+            return week + " | " + date + "-" + month + "-" + year;
+        }
+        document.getElementById("currdate").innerHTML = getCurrentDate() + " | " + getCurrentTime();
+    </script>
+</body>
+</html>
